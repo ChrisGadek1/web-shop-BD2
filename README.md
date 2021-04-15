@@ -3,3 +3,7 @@
   - Entity Framework
   - C#
   - SQLite3
+
+# skład grupy:
+  - Krzysztof Gądek
+  - Mateusz Asimowicz
