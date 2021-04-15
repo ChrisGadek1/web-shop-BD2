@@ -4,6 +4,7 @@ Aplikacja będzie przechowywać klientów, producentów, zamówienia oraz wszyst
   - Entity Framework
   - C#
   - SQLite3
+  - .NET
 
 # skład grupy:
   - Krzysztof Gądek
