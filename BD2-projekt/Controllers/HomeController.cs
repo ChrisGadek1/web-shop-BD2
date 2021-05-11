@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BD2_projekt.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace BD2_projekt.Controllers
 {
@@ -20,6 +21,7 @@ namespace BD2_projekt.Controllers
 
         public IActionResult Index()
         {
+            ViewData["session"] = HttpContext.Session.GetString("user");
             return View();
         }
 
@@ -31,6 +33,7 @@ namespace BD2_projekt.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            ViewData["session"] = HttpContext.Session.GetString("name");
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

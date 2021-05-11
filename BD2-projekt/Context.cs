@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BD2_projekt{
     public class Context:DbContext{
-        DbSet<Products> Products { get; set; }
-        DbSet<Invoices> Invoices { get; set; }
-        DbSet<Users> Users { get; set; } 
-        DbSet<Customers> Customers { get; set; }
-        DbSet<Distributors> Distributors { get; set; }
-        DbSet<StoragePlaces> StoragePlaces { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Invoices> Invoices { get; set; }
+        public DbSet<Users> Users { get; set; } 
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Distributors> Distributors { get; set; }
+        public DbSet<StoragePlaces> StoragePlaces { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
             base.OnConfiguring(optionsBuilder);

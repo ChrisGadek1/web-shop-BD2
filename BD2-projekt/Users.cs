@@ -23,5 +23,7 @@ namespace BD2_projekt{
         public String Phone { get; set; }
         [StringLength(10)]
         public String NIP { get; set; }
+        [MaxLength(500)]
+        public byte[] Password { get; set; }
     }
 }

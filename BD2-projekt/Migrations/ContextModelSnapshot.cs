@@ -120,6 +120,10 @@ namespace BD2_projekt.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
+                    b.Property<byte[]>("Password")
+                        .HasMaxLength(500)
+                        .HasColumnType("BLOB");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
