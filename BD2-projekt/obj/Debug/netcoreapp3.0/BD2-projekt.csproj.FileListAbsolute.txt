@@ -162,3 +162,4 @@ C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\bin\Debug\netcoreapp3.0\
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\BD2-projekt.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\Razor\Views\Login\Index.cshtml.g.cs
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\Razor\Views\Registration\Index.cshtml.g.cs
+C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\Razor\Views\AddProduct\Index.cshtml.g.cs

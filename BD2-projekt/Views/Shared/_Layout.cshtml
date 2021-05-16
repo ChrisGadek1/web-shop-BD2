@@ -31,14 +31,22 @@
                         @{
                             if (data != null && data != "")
                             {
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">wyloguj</a>
-                                }
-                                else
-                                {
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">zaloguj</a>
-                                }
-                                }
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">wyloguj</a>
+                            }
+                            else
+                            {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">zaloguj</a>
+                            }
+                         }
 
+                        </li>
+                        <li>
+                            @{
+                                if (data != null && data != "")
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ProductAdd" asp-action="Index">Dodaj nowy produkt</a>
+                                }
+                            }
                         </li>
                     </ul>
                 </div>
