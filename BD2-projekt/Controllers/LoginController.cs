@@ -38,7 +38,9 @@ namespace BD2_projekt.Controllers
             {
                 String name = query.FirstOrDefault<String>();
                 HttpContext.Session.SetString("user", name);
-                ViewData["session"] = HttpContext.Session.GetString("user");
+                SessionControl.SetUserType(HttpContext);
+                //ViewData["session"] = HttpContext.Session.GetString("user");
+                SessionControl.setViewData(_db, ViewData, HttpContext);
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
         }
@@ -46,7 +48,8 @@ namespace BD2_projekt.Controllers
         public IActionResult LogOut()
         {
             HttpContext.Session.SetString("user", "");
-            ViewData["session"] = HttpContext.Session.GetString("user");
+            //ViewData["session"] = HttpContext.Session.GetString("user");
+            SessionControl.setViewData(_db, ViewData, HttpContext);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

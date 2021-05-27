@@ -12,6 +12,7 @@
 <body>
     @{
         var data = (String)ViewData["session"];
+        var userType = (String)ViewData["userType"];
     }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -28,23 +29,31 @@
                         </li>
                         <li class="nav-item">
 
-                        @{
-                            if (data != null && data != "")
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">wyloguj</a>
+                            @{
+                                if (data != null && data != "")
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">wyloguj</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">zaloguj</a>
+                                }
                             }
-                            else
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">zaloguj</a>
-                            }
-                         }
 
+                        </li>
+                        <li>
+                            @{
+                                if (data != null && data != "" && userType == "Distributor")
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ProductAdd" asp-action="Index">Dodaj nowy produkt</a>
+                                }
+                            }
                         </li>
                         <li>
                             @{
                                 if (data != null && data != "")
                                 {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ProductAdd" asp-action="Index">Dodaj nowy produkt</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="SearchProducts" asp-action="Index">Szukaj produktów</a>
                                 }
                             }
                         </li>

@@ -16,7 +16,7 @@ namespace BD2_projekt{
         public double price { get; set; }
         public String MeasureUnit { get; set; }
         public StoragePlaces StoragePlace { get; set; }
-        public ICollection<Distributors> Distributors { get; set; }
+        public virtual ICollection<Distributors> Distributors { get; set; }
         public ICollection<Invoices> Invoices { get; set; }
     }
 }

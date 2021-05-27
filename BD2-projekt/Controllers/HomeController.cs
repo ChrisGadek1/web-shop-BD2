@@ -21,7 +21,8 @@ namespace BD2_projekt.Controllers
 
         public IActionResult Index()
         {
-            ViewData["session"] = HttpContext.Session.GetString("user");
+            //ViewData["session"] = HttpContext.Session.GetString("user");
+            SessionControl.setViewData(new Context(), ViewData, HttpContext);
             return View();
         }
 
@@ -33,7 +34,8 @@ namespace BD2_projekt.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            ViewData["session"] = HttpContext.Session.GetString("name");
+            //ViewData["session"] = HttpContext.Session.GetString("name");
+            SessionControl.setViewData(new Context(), ViewData, HttpContext);
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

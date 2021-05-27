@@ -29,12 +29,15 @@ namespace BD2_projekt.Controllers
             {
                 passError.PassError = "hasło musi zostać podane";
                 ViewData["errors"] = passError;
+                SessionControl.setViewData(_db, ViewData, HttpContext);
                 return View("Index");
             }
             if(collection["password"] != collection["password2"])
             {
                 passError.PassError = "hasła muszą być takie same";
                 ViewData["errors"] = passError;
+                SessionControl.setViewData(_db, ViewData, HttpContext);
+
                 return View("Index");
             }
             if (collection["type"] == "customer")
@@ -72,7 +75,7 @@ namespace BD2_projekt.Controllers
                 _db.Distributors.Add(user);
                 _db.SaveChanges();
             }
-
+            SessionControl.setViewData(_db, ViewData, HttpContext);
             return View("Index");
         }
     }

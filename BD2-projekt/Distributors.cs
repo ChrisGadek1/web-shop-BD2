@@ -10,6 +10,6 @@ namespace BD2_projekt{
         public int DistributorsID { get; set; }
         public String CompanyName { get; set; }
         public String BankAccountNumber { get; set; }
-        public ICollection<Products> DistributedProducts { get; set; }
+        public virtual ICollection<Products> DistributedProducts { get; set; }
     }
 }

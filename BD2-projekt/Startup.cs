@@ -23,6 +23,7 @@ namespace BD2_projekt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllersWithViews();
             services.AddSession(options =>
             {
@@ -51,11 +52,17 @@ namespace BD2_projekt
 
             app.UseAuthorization();
 
+            app.UseCors(builder => builder
+                .WithOrigins("https://my.web.com", "http://localhost:5001", "http://localhost:44389")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
 
         }

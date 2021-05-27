@@ -21,8 +21,9 @@ namespace BD2_projekt.Controllers
             {
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
-            ViewData["session"] = HttpContext.Session.GetString("user");
-            ViewData["test"] = dis;
+            //ViewData["session"] = HttpContext.Session.GetString("user");
+            //ViewData["test"] = dis;
+            SessionControl.setViewData(_db, ViewData, HttpContext);
             return View("Views/AddProduct/Index.cshtml");
         }
         public IActionResult AddProduct(IFormCollection collection)
@@ -44,9 +45,12 @@ namespace BD2_projekt.Controllers
                 dis.DistributedProducts = products;
             }
             dis.DistributedProducts.Add(product);
+            product.Distributors = new List<Distributors>();
+            product.Distributors.Add(dis);
             _db.Products.Add(product);
             _db.SaveChanges();
-            ViewData["session"] = HttpContext.Session.GetString("user");
+            //ViewData["session"] = HttpContext.Session.GetString("user");
+            SessionControl.setViewData(_db, ViewData, HttpContext);
             return View("Views/Home/Index.cshtml");
         }
 
