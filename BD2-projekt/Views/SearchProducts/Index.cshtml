@@ -16,7 +16,7 @@
                     addFilterValue(0);
                 }
                 searchTypes["0"] = {
-                    "type":event.target.value 
+                    "type":event.target.value
                 }
             })
         }
@@ -29,8 +29,8 @@
                 "   <label for=choose-" + index_v + "'>wpisz wartość filtra</label> " +
                 "   <input type='text' name='choose-" + index_v + "'>"
             document.getElementById("add-filter-select-" + index_v).parentElement.appendChild(node);
-                
-            
+
+
         }
 
         function addDeleteButton(index_v) {
@@ -51,7 +51,7 @@
             let index_v = index;
             let node = document.createElement('div');
             node.classList.add("search-form-inner");
-            node.innerHTML = 
+            node.innerHTML =
                  "<div class='search-form-inner'>" +
                 "   <label for='add-filter-select-"+index_v+"'>Wybierz filtr wyszukiwania</label>" +
                 "   <select name='add-filter-select-"+index_v+"' id='add-filter-select-"+index_v+"'> " +
@@ -62,7 +62,7 @@
                 "   </select>" +
                 "</div>";
             document.getElementById("search-form").appendChild(node);
-               
+
             document.getElementById("add-filter-select-" + index_v).addEventListener("change", (event) => {
                 if (document.getElementById("choose-element-" + index_v) == null) {
                     addFilterValue(index_v);
@@ -76,11 +76,27 @@
         }
 
         function search() {
-            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
             var theUrl = "/api/SearchProducts";
             xmlhttp.open("POST", theUrl, true);
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.send(JSON.stringify(searchTypes));
+        }
+
+        function addToDatabase(ID) {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+            var theUrl = '@Url.Action("AddOrRemove")';
+            xmlhttp.open("POST", theUrl, true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({ 'add': true, 'remove': false, 'ID':ID }));
+        }
+
+        function removeFromDatabase(ID) {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+            var theUrl = '@Url.Action("AddOrRemove")';
+            xmlhttp.open("POST", theUrl, true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({ 'remove': true, 'add': false, 'ID':ID }));
         }
     </script>
 
@@ -107,12 +123,18 @@
             display: inline-block;
             padding: 5px;
         }
+
+        .buy-container{
+            padding: 5px;
+            
+        }
     </style>
 </head>
 
 <section>
     @{ 
         var products = (Products[])ViewData["products"];
+        var cart = (Cart)ViewData["cart"];
     }
     <button onclick="addNewFilter()" class="btn btn-primary">Dodaj Filtr</button>
     <hr />
@@ -147,15 +169,24 @@
                         <div>
                             <p class="distributor">producenci:</p>
                             @{
-                                if(product.Distributors != null)
+                                if (product.Distributors != null)
                                 {
-                                    foreach(Distributors distributor in product.Distributors)
+                                    foreach (Distributors distributor in product.Distributors)
                                     {
                                         <p class="distributor">@distributor.CompanyName,</p>
                                     }
                                 }
                             }
                         </div>
+                        <hr />
+                        
+                        <form class="buy-container">
+                            <p>Aktualnie w koszyku: @cart.CartElements.Where(x => x.Product != null && x.Product.ProductsID == product.ProductsID).FirstOrDefault().NumberOfProducts produktów</p>
+                            <div>
+                                <input type="button" class="btn btn-primary" value="+" name="add" onclick='addToDatabase(@product.ProductsID)' />
+                                <input type="button" class="btn btn-primary" value="-" name="remove" onclick='removeFromDatabase(@product.ProductsID)' />
+                            </div>
+                        </form>
                     </div>
                 }
             }
