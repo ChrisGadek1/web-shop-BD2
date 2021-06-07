@@ -26,9 +26,7 @@
 
 
   <ItemGroup>
-    <None Update="Database">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

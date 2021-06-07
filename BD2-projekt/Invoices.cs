@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace BD2_projekt
 {
@@ -9,6 +8,7 @@ namespace BD2_projekt
         public int InvoicesID { get; set; }
         public Customers Customer { get; set; }
         public DateTime InvoiceDate { get; set; }
-        public ICollection<OrderUnit> Products { get; set; }
+        [Required]
+        public ICollection<OrderUnit> OrderUnit { get; set; }
     }
 }

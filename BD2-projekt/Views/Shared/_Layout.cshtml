@@ -65,6 +65,14 @@
                                 }
                             }
                         </li>
+                        <li>
+                            @{
+                                if (data != null && data != "" && userType == "Customer")
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingHistory" asp-action="Index">Historia Zamówień</a>
+                                }
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

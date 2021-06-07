@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BD2_projekt.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210606161418_Cart")]
-    partial class Cart
+    [Migration("20210607152659_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -300,7 +300,7 @@ namespace BD2_projekt.Migrations
             modelBuilder.Entity("BD2_projekt.OrderUnit", b =>
                 {
                     b.HasOne("BD2_projekt.Invoices", null)
-                        .WithMany("Products")
+                        .WithMany("OrderUnit")
                         .HasForeignKey("InvoicesID");
 
                     b.HasOne("BD2_projekt.Products", "Product")
@@ -359,7 +359,7 @@ namespace BD2_projekt.Migrations
 
             modelBuilder.Entity("BD2_projekt.Invoices", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("OrderUnit");
                 });
 
             modelBuilder.Entity("BD2_projekt.Products", b =>

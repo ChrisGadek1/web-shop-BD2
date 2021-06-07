@@ -298,7 +298,7 @@ namespace BD2_projekt.Migrations
             modelBuilder.Entity("BD2_projekt.OrderUnit", b =>
                 {
                     b.HasOne("BD2_projekt.Invoices", null)
-                        .WithMany("Products")
+                        .WithMany("OrderUnit")
                         .HasForeignKey("InvoicesID");
 
                     b.HasOne("BD2_projekt.Products", "Product")
@@ -357,7 +357,7 @@ namespace BD2_projekt.Migrations
 
             modelBuilder.Entity("BD2_projekt.Invoices", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("OrderUnit");
                 });
 
             modelBuilder.Entity("BD2_projekt.Products", b =>

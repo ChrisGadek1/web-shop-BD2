@@ -9,14 +9,54 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BD2_projekt.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210606160644_DeleteTotalPriceFromInvoices")]
-    partial class DeleteTotalPriceFromInvoices
+    [Migration("20210607153223_Init4")]
+    partial class Init4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.5");
+
+            modelBuilder.Entity("BD2_projekt.Cart", b =>
+                {
+                    b.Property<int>("CartID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UsersID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CartID");
+
+                    b.HasIndex("UsersID");
+
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("BD2_projekt.CartElement", b =>
+                {
+                    b.Property<int>("CartElementID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CartID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("NumberOfProducts")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ProductsID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CartElementID");
+
+                    b.HasIndex("CartID");
+
+                    b.HasIndex("ProductsID");
+
+                    b.ToTable("CartElements");
+                });
 
             modelBuilder.Entity("BD2_projekt.Invoices", b =>
                 {
@@ -222,6 +262,28 @@ namespace BD2_projekt.Migrations
                     b.ToTable("Distributors");
                 });
 
+            modelBuilder.Entity("BD2_projekt.Cart", b =>
+                {
+                    b.HasOne("BD2_projekt.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UsersID");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BD2_projekt.CartElement", b =>
+                {
+                    b.HasOne("BD2_projekt.Cart", null)
+                        .WithMany("CartElements")
+                        .HasForeignKey("CartID");
+
+                    b.HasOne("BD2_projekt.Products", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductsID");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("BD2_projekt.Invoices", b =>
                 {
                     b.HasOne("BD2_projekt.Customers", "Customer")
@@ -238,7 +300,7 @@ namespace BD2_projekt.Migrations
             modelBuilder.Entity("BD2_projekt.OrderUnit", b =>
                 {
                     b.HasOne("BD2_projekt.Invoices", null)
-                        .WithMany("Products")
+                        .WithMany("OrderUnit")
                         .HasForeignKey("InvoicesID");
 
                     b.HasOne("BD2_projekt.Products", "Product")
@@ -290,9 +352,14 @@ namespace BD2_projekt.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BD2_projekt.Cart", b =>
+                {
+                    b.Navigation("CartElements");
+                });
+
             modelBuilder.Entity("BD2_projekt.Invoices", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("OrderUnit");
                 });
 
             modelBuilder.Entity("BD2_projekt.Products", b =>
