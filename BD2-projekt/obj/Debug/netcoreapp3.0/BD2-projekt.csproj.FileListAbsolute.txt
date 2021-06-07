@@ -169,3 +169,4 @@ C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\bin\Debug\netcoreapp3.0\
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\bin\Debug\netcoreapp3.0\System.Web.Http.Cors.dll
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
 C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\BD2-projekt.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Krzysztof\source\repos\BD2-projekt\BD2-projekt\obj\Debug\netcoreapp3.0\Razor\Views\Buy\Index.cshtml.g.cs

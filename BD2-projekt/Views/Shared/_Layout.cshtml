@@ -57,6 +57,14 @@
                                 }
                             }
                         </li>
+                        <li>
+                            @{
+                                if (data != null && data != "" && userType == "Customer")
+                                {
+                                    <a class="nav-link text-dark btn btn-primary" asp-area="" asp-controller="Buy" asp-action="Index">Kup</a>
+                                }
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

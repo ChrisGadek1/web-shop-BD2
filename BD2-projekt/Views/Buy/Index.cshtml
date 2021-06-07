@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+}
+<style>
+    .price{
+        padding: 3px;
+        border: 1px solid;
+        border-radius: 4px;
+        margin: 3px;
+        font-size: 18px;
+        background-color:antiquewhite;
+    }
+</style>
+
+<section>
+    @{ 
+        var cart = (Cart)ViewData["cart"];
+    }
+    <form>
+        <p>Aktualna zawartość koszyka</p>
+        <table class="table table-striped">
+            <tr>
+                <th scope="row">#</th>
+                <th scope="row">Nazwa</th>
+                <th scope="row">Ilość</th>
+                <th scope="row">Cena jednostkowa</th>
+            </tr>
+            @{  CartElement[] cartElements = cart.CartElements.ToArray();
+                for (int i = 0; i < cart.CartElements.Count(); i++)
+                {
+                <tr>
+                    <td scope="row">@(i + 1)</td>
+                    <td scope="row">@cartElements[i].Product.ProductName</td>
+                    <td scope="row">@cartElements[i].NumberOfProducts</td>
+                    <td scope="row">@cartElements[i].Product.price zł</td>
+                </tr>
+                }
+            }
+        </table>
+        <div>suma: <p class="p-0 d-inline-block price">@cart.CartElements.Aggregate(0.0, (sum, next) => sum + next.Product.price * next.NumberOfProducts)</p> zł</div>
+    </form>
+</section>
+

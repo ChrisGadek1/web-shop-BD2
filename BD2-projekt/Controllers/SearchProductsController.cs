@@ -22,14 +22,19 @@ namespace BD2_projekt.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult getCartData()
+        {
+            Cart cart = (from c in _db.Cart.Include(x => x.CartElements).ThenInclude(y => y.Product).Include("User") where c.User.Email == HttpContext.Session.GetString("user") select c).FirstOrDefault();
+            return Json(cart);
+        }
+
         [HttpPost]
         public IActionResult AddOrRemove([FromBody] JSONAddRemoveToCart request)
         {
             int ID = request.ID;
             Cart cart = (from c in _db.Cart.Include("CartElements") where c.User.Email == HttpContext.Session.GetString("user") select c).FirstOrDefault<Cart>();
-            Console.WriteLine(cart.CartElements);
             Products product = (from p in _db.Products where p.ProductsID == ID select p).FirstOrDefault<Products>();
-            Console.WriteLine(product.ProductName);
             if (cart == null)
             {
                 cart = new Cart();
@@ -42,10 +47,6 @@ namespace BD2_projekt.Controllers
             {
                 cart.CartElements = new List<CartElement>();
             }
-            Console.WriteLine(cart);
-            Console.WriteLine(cart.CartElements);
-            Console.WriteLine(cart.CartElements.Count());
-            Console.WriteLine(cart.CartElements.ToList());
             if (cart.CartElements.Where(x => x.Product != null && x.Product.ProductsID == product.ProductsID).ToList().Count() == 0)
             {
                 CartElement cartElement = new CartElement();
@@ -88,7 +89,6 @@ namespace BD2_projekt.Controllers
                 }
             }
             Products[] products = (from p in _db.Products.Include("Distributors") select p).ToArray<Products>();
-            Cart cart = (from c in _db.Cart.Include("CartElements") where c.User.Email == HttpContext.Session.GetString("user") select c).FirstOrDefault();
             foreach(String key in result.Keys)
             {
                 switch (key)
@@ -145,7 +145,6 @@ namespace BD2_projekt.Controllers
             }
             SessionControl.setViewData(_db, ViewData, HttpContext);
             ViewData["products"] = products;
-            ViewData["cart"] = cart;
             return View("Index");
         }
     }
