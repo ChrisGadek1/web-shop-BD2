@@ -98,18 +98,6 @@ CartElements - przedmioty w koszyku:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # Skład grupy:
   - Krzysztof Gądek
   - Mateusz Asimowicz
